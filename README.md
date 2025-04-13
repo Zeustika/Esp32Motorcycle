@@ -1,37 +1,94 @@
-🏍️ ESP32 Smart Motorcycle System
-This project is an ESP32-based motorcycle security and control system designed to enhance the safety and convenience of two-wheel vehicles using Bluetooth connectivity and motion detection.
+## 🏍️ ESP32 Smart Motorcycle System with Auto-Off & Anti-Theft
 
-🔧 Key Features
-🔌 3-Channel Relay Control
+This project is a smart motorcycle security and control system based on the **ESP32 microcontroller**. It features **Bluetooth control**, **multi-mode relay activation**, and an **anti-theft system** that triggers an alarm if the vehicle is moved while in parking mode.
 
-Relay 1: Toggle ON/OFF
+---
 
-Relay 2: Push-to-ON (active only while the button is pressed)
+### 🔧 Features
 
-Relay 3: Toggle alarm state
+- 🔌 **3 Relay Control Modes**  
+  - **Relay 1 (ON/OFF toggle)**  
+  - **Relay 2 (Push-to-ON, active while pressed)**  
+  - **Relay 3 (Toggle + Auto-off after a delay + Alarm mode)**
 
-📱 Bluetooth App Control
-Built using MIT App Inventor, allowing full control of the motorcycle system via an Android smartphone.
+- 📱 **Bluetooth Control** via MIT App Inventor
+- 🅿️ **Parking Mode Detection**  
+  If the Bluetooth connection is lost, the system enters parking mode and watches for movement.
+- 🚨 **Anti-Theft Alarm**  
+  If movement is detected during parking mode (via MPU-6050), the alarm relay is triggered for 1 minute.
+- 🔋 **Auto-Off Function**  
+  Relay 3 automatically turns off after a set duration if no action is taken.
 
-🅿️ Automatic Parking Mode
-If the Bluetooth connection is lost, the system automatically enters parking mode. If motion is detected while in parking mode, an alarm will be triggered for 1 minute.
+---
 
-🧠 Movement Detection with MPU-6050
-The system uses a gyroscope and accelerometer to detect suspicious movement or changes in position.
+### 🧰 Hardware Requirements
 
-🔔 Anti-Theft Alarm System
-Relay 3 activates a passive buzzer to function as a loud audible alarm when needed.
+| Component         | Description                            |
+|------------------|----------------------------------------|
+| ESP32            | ESP32-WROOM-32D module                 |
+| 3-Channel Relay  | To control multiple electrical loads   |
+| MPU-6050         | Accelerometer & gyroscope module       |
+| Passive Buzzer   | For audible alarm                      |
+| Status LED       | For visual feedback                    |
+| Android Phone    | For Bluetooth control via app          |
 
-🧰 Components Used
+---
+
+### ⚡ Wiring Diagram
+
+```
 ESP32-WROOM-32D
++--------------------------+
+| GPIO 13 -> RELAY_1       |
+| GPIO 12 -> RELAY_2       |
+| GPIO 14 -> RELAY_3       |
+| GPIO 27 -> STATUS LED    |
+| GPIO 21 (SDA) -> MPU6050 |
+| GPIO 22 (SCL) -> MPU6050 |
+| GND      -> All modules  |
+| 3.3V/5V  -> MPU6050, etc |
++--------------------------+
+```
 
-3x Relay Module
+*(Make sure relays are powered separately if needed depending on current)*
 
-Passive Buzzer
+---
 
-MPU-6050 Motion Sensor
+### 🚀 How to Use
 
-Android Smartphone with Bluetooth
+#### 1. Upload the Code
 
-💡 Project Goal
-To provide an affordable and effective way to improve motorcycle security using IoT and automation, making personal transportation smarter and safer.
+Flash `motor_iyus_auto_off.ino` to your ESP32 using Arduino IDE or PlatformIO.
+
+#### 2. Connect the Hardware
+
+- Wire the relays, LED, buzzer, and MPU-6050 according to the diagram above.
+- Ensure ESP32 has a stable 5V power supply.
+
+#### 3. Build the Android App
+
+- Use **MIT App Inventor** to create an app with **3 buttons**:
+  - Button 1: Toggle Relay 1
+  - Button 2: Momentary Push Relay 2
+  - Button 3: Toggle Relay 3 + enable auto-off + alarm
+  
+*(I can help design the UI if needed!)*
+
+#### 4. Pair Phone via Bluetooth
+
+- Connect your Android phone via Bluetooth to the ESP32 module.
+- Control the system using the app.
+
+#### 5. Auto-Off and Alarm
+
+- When Relay 3 is turned ON, a timer begins.
+- If Bluetooth disconnects (simulating parking), system enters **parking mode**.
+- If movement is detected by MPU-6050, the alarm will activate for 1 minute.
+
+---
+
+### 📌 Notes
+
+- The system is designed to continue functioning after Bluetooth disconnect.
+- You can modify the delay time for auto-off or alarm duration in the code.
+- Always ensure power safety when connecting to real motorcycle circuits.
