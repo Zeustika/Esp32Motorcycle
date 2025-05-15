@@ -94,3 +94,10 @@ Flash `motor_iyus_auto_off.ino` to your ESP32 using Arduino IDE or PlatformIO.
 - The system is designed to continue functioning after Bluetooth disconnect.
 - You can modify the delay time for auto-off or alarm duration in the code.
 - Always ensure power safety when connecting to real motorcycle circuits.
+
+### 📌 Credits
+- fauzan
+- harpan
+- samith
+- raden iqbal
+- falgan
