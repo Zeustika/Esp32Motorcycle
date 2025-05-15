@@ -49,6 +49,8 @@ ESP32-WROOM-32D
 | 3.3V/5V  -> MPU6050, etc |
 +--------------------------+
 ```
+![WhatsApp Image 2024-11-24 at 13 51 36_5bef2cc3](https://github.com/user-attachments/assets/d040a750-c320-429e-a4d9-f8c8f1424160)
+
 
 *(Make sure relays are powered separately if needed depending on current)*
 
