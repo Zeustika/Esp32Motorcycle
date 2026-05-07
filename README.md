@@ -39,8 +39,11 @@ This project is a smart motorcycle security and control system based on the **ES
 ---
 
 ### Wiring Diagram
+<img width="857" height="586" alt="image" src="https://github.com/user-attachments/assets/7ba1b658-8e8a-4e74-8537-d899482e731f" />
 
 ```
+
+
 ESP32-WROOM-32D
 +--------------------------+
 | GPIO 13 -> RELAY_1       |
@@ -53,8 +56,6 @@ ESP32-WROOM-32D
 | 3.3V/5V  -> MPU6050, etc |
 +--------------------------+
 ```
-
-![WhatsApp Image 2024-11-24 at 13 51 36\_5bef2cc3](https://github.com/user-attachments/assets/d040a750-c320-429e-a4d9-f8c8f1424160)
 
 *(Make sure relays are powered separately if needed depending on current)*
 
